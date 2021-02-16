@@ -1,0 +1,41 @@
+#topNav{
+    background-color: rgb(4, 4, 136);
+    color: white;
+}
+
+#brand{
+    color: white;
+}
+
+#navOption{
+    color: white;
+}
+
+.dot {
+    height: 10px;
+    width: 10px;
+    background-color: rgb(0, 128, 0);
+    border-radius: 50%;
+    display: inline-block;
+}
+
+#jumbo {
+    background-image: url("https://www.stockvault.net/data/2019/02/27/260820/preview16.jpg");
+    background-size: cover;
+}
+  
+
+#marketOpenOrClosed {
+    font-size: 14px;
+    display: inline-block;
+    color: white;
+}
+
+.titleText {
+    color: white;
+}
+
+.header-1{
+    font-size: 35px;
+    color: rgb(4, 4, 136);
+}
