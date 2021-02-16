@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+      <!-- Bootstrap CSS -->
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+     
+      <!--My Own CSS-->
+      <link rel="stylesheet" href="indexStyle.css">
+     
+      <title>Finance Tracker</title>
+  </head>
+
+  <nav class="navbar navbar-expand-lg navbar-light" id="topNav">
+      <a class="navbar-brand" id="brand" href="#">
+          <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-graph-up" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" d="M0 0h1v15h15v1H0V0zm10 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-1 0V4.9l-3.613 4.417a.5.5 0 0 1-.74.037L7.06 6.767l-3.656 5.027a.5.5 0 0 1-.808-.588l4-5.5a.5.5 0 0 1 .758-.06l2.609 2.61L13.445 4H10.5a.5.5 0 0 1-.5-.5z"/>
+            </svg>
+          Finance Tracker</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+   
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#" id="navOption">Home<span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="CryptoCurrency.html" id="navOption">Crypto Currency</a>
+          <li class="nav-item">
+              <a class="nav-link" href="searchResult.html" id="navOption">Search for a Stock</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+  <body>
+      <div class="jumbotron jumbotron-fluid text-center" id="jumbo">
+          <div class="container-fluid">
+              <h1 class="titleText">Finance Tracker</h1>
+              <span class="dot"></span>
+              <p id="marketOpenOrClosed" onload="openOrClosed()">US Markets are closed</p>
+          </div>
+      </div>
+
+      <!--Sector Portion for Real-Time-->
+      <div class="container">
+        <div class="sectors">
+          <div class="row">
+            <div class="col container-fluid text-center mt-5">
+              <p class="header-1">US Sectors Real-Time Performance</p>
+              <hr class="my-4">
+            </div>
+          </div>
+          <!--First Row-->
+          <div class="row">
+            <div class="col-md-4 text-center" id="leftStock">
+                <a class="marketLink" href="#">Energy</a>
+                <p class="performance" id="energy"></p>
+            </div>
+            <div class="col-md-4 text-center" id="middleStock">
+                <a class="marketLink" href="#">Industrials</a>
+                <p class="performance" id="industrials"></p>
+            </div>
+            <div class="col-md-4 text-center" id="rightStock">
+                <a class="marketLink" href="#">Materials</a>
+                <p class="performance" id="materials"></p>
+            </div>
+        </div>
+        <!--Second Row-->
+        <div class="row mt-5">
+          <div class="col-md-4 text-center" id="leftStock">
+              <a class="marketLink" href="#">Financials</a>
+              <p class="performance" id="financials"></p>
+          </div>
+          <div class="col-md-4 text-center" id="middleStock">
+              <a class="marketLink" href="#">Utilities</a>
+              <p class="performance" id="utilities"></p>
+          </div>
+          <div class="col-md-4 text-center" id="rightStock">
+              <a class="marketLink" href="#">Health Care</a>
+              <p class="performance" id="health-care"></p>
+          </div>
+        </div>
+
+        <!--Third Row-->
+        <div class="row mt-5">
+          <div class="col-md-4 text-center" id="leftStock">
+              <a class="marketLink" href="#">Real Estate</a>
+              <p class="performance" id="real-estate"></p>
+          </div>
+          <div class="col-md-4 text-center" id="middleStock">
+              <a class="marketLink" href="#">Communication Services</a>
+              <p class="performance" id="communication-services"></p>
+          </div>
+          <div class="col-md-4 text-center" id="rightStock">
+              <a class="marketLink" href="#">Information Technology</a>
+              <p class="performance" id="information-technology"></p>
+          </div>
+        </div>
+        </div>
+       
+        <!--US Sector YTD-->
+        <div class="YTD">
+            <div class="row">
+                <div class="col container-fluid text-center mt-5">
+                    <p class="header-1">US Sectors Year-to-Date Performance</p>
+                    <hr class="my-4">
+                </div>
+            </div>
+           
+            <div class="row">
+            <div class="col-md-4 text-center" id="leftStock">
+                <a class="marketLink" href="#">Energy</a>
+                <p class="performance" id="energy-ytd"></p>
+            </div>
+            <div class="col-md-4 text-center" id="middleStock">
+                <a class="marketLink" href="#">Industrials</a>
+                <p class="performance" id="industrials-ytd"></p>
+            </div>
+            <div class="col-md-4 text-center" id="rightStock">
+                <a class="marketLink" href="#">Materials</a>
+                <p class="performance" id="materials-ytd"></p>
+            </div>
+        </div>
+        <!--Second Row-->
+        <div class="row mt-5">
+          <div class="col-md-4 text-center" id="leftStock">
+              <a class="marketLink" href="#">Financials</a>
+              <p class="performance" id="financials-ytd"></p>
+          </div>
+          <div class="col-md-4 text-center" id="middleStock">
+              <a class="marketLink" href="#">Utilities</a>
+              <p class="performance" id="utilities-ytd"></p>
+          </div>
+          <div class="col-md-4 text-center" id="rightStock">
+              <a class="marketLink" href="#">Health Care</a>
+              <p class="performance" id="health-care-ytd"></p>
+          </div>
+        </div>
+
+        <!--Third Row-->
+        <div class="row mt-5">
+          <div class="col-md-4 text-center" id="leftStock">
+              <a class="marketLink" href="#">Real Estate</a>
+              <p class="performance" id="real-estate-ytd"></p>
+          </div>
+          <div class="col-md-4 text-center" id="middleStock">
+              <a class="marketLink" href="#">Communication Services</a>
+              <p class="performance" id="communication-services-ytd"></p>
+          </div>
+          <div class="col-md-4 text-center" id="rightStock">
+              <a class="marketLink" href="#">Information Technology</a>
+              <p class="performance" id="information-technology-ytd"></p>
+          </div>
+        </div>
+        </div>
+      </div>
+     
+       <script>
+       
+       window.onload = function() {
+           const data = null;
+           
+            var xhr = new XMLHttpRequest();
+            xhr.addEventListener("readystatechange", function () {
+                if (this.readyState === this.DONE) {
+                    var obj = JSON.parse(this.responseText);
+                    console.log(obj);
+                    //Real-Time Performance
+                    //First Row
+                    document.getElementById("energy").innerHTML = obj["Rank A: Real-Time Performance"]["Energy"];
+                    document.getElementById("industrials").innerHTML = obj["Rank A: Real-Time Performance"]["Industrials"];
+                    document.getElementById("materials").innerHTML = obj["Rank A: Real-Time Performance"]["Materials"];
+                    //Second Row
+                    document.getElementById("financials").innerHTML = obj["Rank A: Real-Time Performance"]["Financials"];
+                    document.getElementById("utilities").innerHTML = obj["Rank A: Real-Time Performance"]["Utilities"];
+                    document.getElementById("health-care").innerHTML = obj["Rank A: Real-Time Performance"]["Health Care"];
+                    //Third Row
+                    document.getElementById("real-estate").innerHTML = obj["Rank A: Real-Time Performance"]["Real Estate"];
+                    document.getElementById("communication-services").innerHTML = obj["Rank A: Real-Time Performance"]["Communication Services"];
+                    document.getElementById("information-technology").innerHTML = obj["Rank A: Real-Time Performance"]["Information Technology"];
+                   
+                    //Year-To-Date Performance
+                    //First Row
+                    document.getElementById("energy-ytd").innerHTML = obj["Rank F: Year-to-Date (YTD) Performance"]["Energy"];
+                    document.getElementById("industrials-ytd").innerHTML = obj["Rank F: Year-to-Date (YTD) Performance"]["Industrials"];
+                    document.getElementById("materials-ytd").innerHTML = obj["Rank F: Year-to-Date (YTD) Performance"]["Materials"];
+                    //Second Row
+                    document.getElementById("financials-ytd").innerHTML = obj["Rank F: Year-to-Date (YTD) Performance"]["Financials"];
+                    document.getElementById("utilities-ytd").innerHTML = obj["Rank F: Year-to-Date (YTD) Performance"]["Utilities"];
+                    document.getElementById("health-care-ytd").innerHTML = obj["Rank F: Year-to-Date (YTD) Performance"]["Health Care"];
+                    //Third Row
+                    document.getElementById("real-estate-ytd").innerHTML = obj["Rank F: Year-to-Date (YTD) Performance"]["Real Estate"];
+                    document.getElementById("communication-services-ytd").innerHTML = obj["Rank F: Year-to-Date (YTD) Performance"]["Communication Services"];
+                    document.getElementById("information-technology-ytd").innerHTML = obj["Rank F: Year-to-Date (YTD) Performance"]["Information Technology"];
+                   
+                   
+                }
+            });
+            xhr.open("GET", "https://alpha-vantage.p.rapidapi.com/query?function=SECTOR");
+            xhr.setRequestHeader("x-rapidapi-key", "a1030aa566msh7440cb2e6ade266p1e3a83jsnad4704a89679");
+            xhr.setRequestHeader("x-rapidapi-host", "alpha-vantage.p.rapidapi.com");
+           
+            xhr.send(data);
+            openOrClosed();
+       }
+       
+        //US Markets Opened or closed
+        function openOrClosed() {
+              var element = document.getElementById("marketOpenOrClosed");
+              var dot = document.getElementById("grDot");
+              var d = new Date();
+              var currDay = d.getDay();
+              var currTime = d.getHours();
+
+              if(currDay >= 1 && currDay <= 6) {
+                  if(currTime >= 9 && currTime <= 16) {
+                      element.innerHTML = "US Markets are open";
+                      dot.style.backgroundColor = "green";
+                  }
+              }
+              else {
+                  element.innerHTML = "US Markets are closed";
+                  dot.style.backgroundColor = "red";
+              }
+          }
+
+      </script>
+
+
+      <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+ 
+  </body>
+</html>
