@@ -1,0 +1,39 @@
+#topNav{
+    background-color: rgb(4, 4, 136);
+    color: white;
+}
+
+#brand{
+    color: white;
+}
+
+#navOption{
+    color: white;
+}
+
+.form-control:focus {
+    box-shadow: none;
+  }
+
+
+#searchBar {
+    width: 60vh;
+}
+
+#topSearch {
+    align-items: center;
+}
+#jumbo {
+    background-image: url("https://www.stockvault.net/data/2019/02/27/260820/preview16.jpg");
+    background-size: cover;
+}
+  
+
+.titleText {
+    color: white;
+}
+
+.header-1{
+    font-size: 35px;
+    color: rgb(4, 4, 136);
+}
