@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        
+        <!--My Own CSS-->
+      <link rel="stylesheet" href="indexStyle.css">
+     
+        
+        
+    </head>
+    
+    
+  <nav class="navbar navbar-expand-lg navbar-light" id="topNav">
+      <a class="navbar-brand" id="brand" href="#">
+          <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-graph-up" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" d="M0 0h1v15h15v1H0V0zm10 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-1 0V4.9l-3.613 4.417a.5.5 0 0 1-.74.037L7.06 6.767l-3.656 5.027a.5.5 0 0 1-.808-.588l4-5.5a.5.5 0 0 1 .758-.06l2.609 2.61L13.445 4H10.5a.5.5 0 0 1-.5-.5z"/>
+            </svg>
+          Finance Tracker</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="index.html" id="navOption">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" id="navOption">Crypto Currency<span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" href="searchResult.html" id="navOption">Search for Stock</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    
+    <body>
+        <div class="container">
+            <div class="crypto">
+                <div class="col container-fluid text-center mt-5">
+                    <p class="header-1">Crypto Daily Performance</p>
+                    <hr class="my-4">
+                </div>
+            </div>
+        <!--First Row-->
+          <div class="row">
+            <div class="col-md-4" id="leftStock">
+                <a class="marketLink mt-3" href="#">Bitcoin (BTC)</a>
+                <p class="price mt-3" id="price-btc"></p>
+                <p class="24h-high mt-3" id="24h-high-btc"></p>
+                <p class="24h-low" id="24h-low-btc"></p>
+                <p class="week" id="week-btc"></p>
+            </div>
+            <div class="col-md-4" id="middleStock">
+                <a class="marketLink mt-3" href="#">Ethereum (ETH)</a>
+                <p class="price" id="price-eth"></p>
+                <p class="24-h" id="24h-high-eth"></p>
+                <p class="week" id="24h-low-eth"></p>
+            </div>
+            <div class="col-md-4" id="rightStock">
+                <a class="marketLink mt-3" href="#">XRP</a>
+                <p class="price" id="price-xrp"></p>
+                <p class="24-h" id="24h-high-exrp"></p>
+                <p class="week" id="24h-low-xrp"></p>
+            </div>
+        </div>
+        
+                <!--First Row-->
+          <div class="row mt-5">
+            <div class="col-md-4" id="leftStock">
+                <a class="marketLink mt-3" href="#">Tether (USDT)</a>
+                <p class=price id="price-usdt"></p>
+            </div>
+            <div class="col-md-4 text-center" id="middleStock">
+                <a class="marketLink mt-3" href="#">Litecoin (LTC)</a>
+                <p class=price id="price-ltc"></p>
+            </div>
+            <div class="col-md-4 text-center" id="rightStock">
+                <a class="marketLink mt-3" href="#">Bitcoin Cash (BCH)</a>
+                <p class=price id="price-bch"></p>
+            </div>
+          </div>
+    </div>
+    
+    <script>
+    
+        window.onload = function() {
+            bitcoinER();
+            bitcoin24();
+            ethER();
+            eth24();
+            xrpER();
+            usdtER();
+            ltcER();
+            bchER();
+        }
+        
+        function bitcoinER() {
+            const data = null;
+            const xhr = new XMLHttpRequest();
+            
+            xhr.addEventListener("readystatechange", function () {
+        	    if (this.readyState === this.DONE) {
+        		    var obj = JSON.parse(this.responseText);
+        		    document.getElementById("price-btc").innerHTML = "Price: $" + obj["Realtime Currency Exchange Rate"]["5. Exchange Rate"];
+        	    }
+            });
+            
+            xhr.open("GET", "https://alpha-vantage.p.rapidapi.com/query?from_currency=BTC&function=CURRENCY_EXCHANGE_RATE&to_currency=USD");
+            xhr.setRequestHeader("x-rapidapi-key", "a1030aa566msh7440cb2e6ade266p1e3a83jsnad4704a89679");
+            xhr.setRequestHeader("x-rapidapi-host", "alpha-vantage.p.rapidapi.com");
+            
+            xhr.send(data);
+        }
+        
+        function bitcoin24() {
+            const data = null;
+            const xhr = new XMLHttpRequest();
+            
+            var today = new Date();
+            var dd = String(today.getDate()).padStart(2, '0');
+            var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+            var yyyy = today.getFullYear();
+            
+            today = yyyy + '-' + mm + '-' + dd;
+            
+            xhr.addEventListener("readystatechange", function () {
+        	    if (this.readyState === this.DONE) {
+        		    var obj = JSON.parse(this.responseText);
+        		    document.getElementById("24h-high-btc").innerHTML = "24 hour high: $" + obj["Time Series (Digital Currency Daily)"][today]["2b. high (USD)"];
+        		    document.getElementById("24h-low-btc").innerHTML = "24 hour low: $" + obj["Time Series (Digital Currency Daily)"][today]["3b. low (USD)"];
+        	    }
+            });
+            xhr.open("GET", "https://alpha-vantage.p.rapidapi.com/query?market=CNY&symbol=BTC&function=DIGITAL_CURRENCY_DAILY");
+            xhr.setRequestHeader("x-rapidapi-key", "a1030aa566msh7440cb2e6ade266p1e3a83jsnad4704a89679");
+            xhr.setRequestHeader("x-rapidapi-host", "alpha-vantage.p.rapidapi.com");
+            
+            xhr.send(data);
+        }
+        
+        function ethER() {
+            const data = null;
+            const xhr = new XMLHttpRequest();
+            
+            xhr.addEventListener("readystatechange", function () {
+        	    if (this.readyState === this.DONE) {
+        		    var obj = JSON.parse(this.responseText);
+        		    document.getElementById("price-eth").innerHTML = "Price: $" + obj["Realtime Currency Exchange Rate"]["5. Exchange Rate"];
+        	    }
+            });
+            
+            xhr.open("GET", "https://alpha-vantage.p.rapidapi.com/query?from_currency=ETH&function=CURRENCY_EXCHANGE_RATE&to_currency=USD");
+            xhr.setRequestHeader("x-rapidapi-key", "a1030aa566msh7440cb2e6ade266p1e3a83jsnad4704a89679");
+            xhr.setRequestHeader("x-rapidapi-host", "alpha-vantage.p.rapidapi.com");
+            
+            xhr.send(data);
+        }
+        
+        function eth24() {
+            const data = null;
+            const xhr = new XMLHttpRequest();
+            
+            var today = new Date();
+            var dd = String(today.getDate()).padStart(2, '0');
+            var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+            var yyyy = today.getFullYear();
+            
+            today = yyyy + '-' + mm + '-' + dd;
+            
+            xhr.addEventListener("readystatechange", function () {
+        	    if (this.readyState === this.DONE) {
+        		    var obj = JSON.parse(this.responseText);
+        		    console.log(obj["Time Series (Digital Currency Daily)"][today]);
+        		    document.getElementById("24h-high-eth").innerHTML = "24 hour high: $" + obj["Time Series (Digital Currency Daily)"][today]["2b. high (USD)"];
+        		    document.getElementById("24h-low-eth").innerHTML = "24 hour low: $" + obj["Time Series (Digital Currency Daily)"][today]["3b. low (USD)"];
+        	    }
+            });
+            xhr.open("GET", "https://alpha-vantage.p.rapidapi.com/query?market=CNY&symbol=ETH&function=DIGITAL_CURRENCY_DAILY");
+            xhr.setRequestHeader("x-rapidapi-key", "a1030aa566msh7440cb2e6ade266p1e3a83jsnad4704a89679");
+            xhr.setRequestHeader("x-rapidapi-host", "alpha-vantage.p.rapidapi.com");
+            
+            xhr.send(data);
+        }
+        
+        function xrpER() {
+            const data = null;
+            const xhr = new XMLHttpRequest();
+            
+            xhr.addEventListener("readystatechange", function () {
+        	    if (this.readyState === this.DONE) {
+        		    var obj = JSON.parse(this.responseText);
+        		    document.getElementById("price-xrp").innerHTML = "Price: $" + obj["Realtime Currency Exchange Rate"]["5. Exchange Rate"];
+        	    }
+            });
+            
+            xhr.open("GET", "https://alpha-vantage.p.rapidapi.com/query?from_currency=XRP&function=CURRENCY_EXCHANGE_RATE&to_currency=USD");
+            xhr.setRequestHeader("x-rapidapi-key", "a1030aa566msh7440cb2e6ade266p1e3a83jsnad4704a89679");
+            xhr.setRequestHeader("x-rapidapi-host", "alpha-vantage.p.rapidapi.com");
+            
+            xhr.send(data);
+        }
+        
+        function xrp24() {
+            const data = null;
+            const xhr = new XMLHttpRequest();
+            
+            var today = new Date();
+            var dd = String(today.getDate()).padStart(2, '0');
+            var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+            var yyyy = today.getFullYear();
+            
+            today = yyyy + '-' + mm + '-' + dd;
+            
+            xhr.addEventListener("readystatechange", function () {
+        	    if (this.readyState === this.DONE) {
+        		    var obj = JSON.parse(this.responseText);
+        		    console.log(obj["Time Series (Digital Currency Daily)"][today]);
+        		    document.getElementById("24h-high-xrp").innerHTML = "24 hour high: $" + obj["Time Series (Digital Currency Daily)"][today]["2b. high (USD)"];
+        		    document.getElementById("24h-low-xrp").innerHTML = "24 hour low: $" + obj["Time Series (Digital Currency Daily)"][today]["3b. low (USD)"];
+        	    }
+            });
+            xhr.open("GET", "https://alpha-vantage.p.rapidapi.com/query?market=CNY&symbol=XRP&function=DIGITAL_CURRENCY_DAILY");
+            xhr.setRequestHeader("x-rapidapi-key", "a1030aa566msh7440cb2e6ade266p1e3a83jsnad4704a89679");
+            xhr.setRequestHeader("x-rapidapi-host", "alpha-vantage.p.rapidapi.com");
+            
+            xhr.send(data);
+        }
+        
+        function usdtER() {
+            const data = null;
+            const xhr = new XMLHttpRequest();
+            
+            xhr.addEventListener("readystatechange", function () {
+        	    if (this.readyState === this.DONE) {
+        		    var obj = JSON.parse(this.responseText);
+        		    document.getElementById("price-usdt").innerHTML = "Price: $" + obj["Realtime Currency Exchange Rate"]["5. Exchange Rate"];
+        	    }
+            });
+            
+            xhr.open("GET", "https://alpha-vantage.p.rapidapi.com/query?from_currency=USDT&function=CURRENCY_EXCHANGE_RATE&to_currency=USD");
+            xhr.setRequestHeader("x-rapidapi-key", "a1030aa566msh7440cb2e6ade266p1e3a83jsnad4704a89679");
+            xhr.setRequestHeader("x-rapidapi-host", "alpha-vantage.p.rapidapi.com");
+            
+            xhr.send(data);
+            
+        }
+        
+        function ltcER() {
+            const data = null;
+            const xhr = new XMLHttpRequest();
+            
+            xhr.addEventListener("readystatechange", function () {
+        	    if (this.readyState === this.DONE) {
+        		    var obj = JSON.parse(this.responseText);
+        		    document.getElementById("price-ltc").innerHTML = "Price: $" + obj["Realtime Currency Exchange Rate"]["5. Exchange Rate"];
+        	    }
+            });
+            
+            xhr.open("GET", "https://alpha-vantage.p.rapidapi.com/query?from_currency=LTC&function=CURRENCY_EXCHANGE_RATE&to_currency=USD");
+            xhr.setRequestHeader("x-rapidapi-key", "a1030aa566msh7440cb2e6ade266p1e3a83jsnad4704a89679");
+            xhr.setRequestHeader("x-rapidapi-host", "alpha-vantage.p.rapidapi.com");
+            
+            xhr.send(data);
+        }
+        
+        function bchER() {
+            const data = null;
+            const xhr = new XMLHttpRequest();
+            
+            xhr.addEventListener("readystatechange", function () {
+        	    if (this.readyState === this.DONE) {
+        		    var obj = JSON.parse(this.responseText);
+        		    document.getElementById("price-bch").innerHTML = "Price: $" + obj["Realtime Currency Exchange Rate"]["5. Exchange Rate"];
+        	    }
+            });
+            
+            xhr.open("GET", "https://alpha-vantage.p.rapidapi.com/query?from_currency=BCH&function=CURRENCY_EXCHANGE_RATE&to_currency=USD");
+            xhr.setRequestHeader("x-rapidapi-key", "a1030aa566msh7440cb2e6ade266p1e3a83jsnad4704a89679");
+            xhr.setRequestHeader("x-rapidapi-host", "alpha-vantage.p.rapidapi.com");
+            
+            xhr.send(data);
+        }
+        
+    </script>
+    </body>
+</html>
